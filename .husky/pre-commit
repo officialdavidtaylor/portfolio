@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo 'Starting pre-commit validation...'
+
+# Ensure Prettier standards are met
+yarn check-format ||
+(
+    echo 'check-format failed';
+    false;
+)
+
+# Validate against ESLint rules
+yarn check-lint ||
+(
+  echo 'check-lint failed'
+  false;
+)
+
+# Check tsconfig
+yarn check-types ||
+(
+  echo 'check-types failed'
+  false;
+)
+
+echo 'Initial checks passed: Building project now...'
+
+yarn build ||
+(
+    echo 'build step failed'
+    false;
+)
+
+# Everything has passed; we can commit!
+echo 'All checks have passed; commiting changes to branch'
