@@ -21,21 +21,23 @@ const Post = ({
   return (
     <>
       <Header />
-      <main className="mb-8 flex justify-center px-4">
-        <div id="post-container" className="max-w-7xl">
+      <main className="flex justify-center px-4 pb-8">
+        <div id="post-container" className="max-w-7xl ">
           <div id="post-heading">
             <hr className="mb-4" />
             <h1 className="mb-4 font-heading text-3xl font-semibold">
               {project.title}
             </h1>
-            {project.description ? <p>{project.description}</p> : null}
+            {project.description ? (
+              <p className="text-teal">{project.description}</p>
+            ) : null}
             {lastEdited ? (
               <p className="text-slate-500">edited: {lastEdited}</p>
             ) : null}
             <hr className="mt-4" />
           </div>
           {/* <div id="left-gutter" className="" /> */}
-          <div className="prose max-w-none py-8 prose-img:rounded-2xl">
+          <div className="prose max-w-none py-8 prose-headings:text-teal prose-p:text-gray prose-a:text-teal prose-code:text-[#cc9999] prose-ol:text-gray prose-ul:text-gray prose-td:text-gray prose-img:rounded-2xl">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {markdown}
             </ReactMarkdown>
