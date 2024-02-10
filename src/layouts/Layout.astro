@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="David Taylor's portfolio and digital garden; here you can find projects, musings, and UI thingamabobs."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-50">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Register custom font families from Google Fonts */
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto+Slab:wght@100..900&display=swap");
+</style>
