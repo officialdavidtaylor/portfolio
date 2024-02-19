@@ -1,0 +1,15 @@
+# Settings for the [build] key are global and are applied to
+# all deploy contexts unless overridden by a context-specific setting.
+[build]
+  base = "/"
+  publish = "site/dist/"
+  command = "pnpm --filter site build"
+
+# Dev context (any environment variables for the dev environment need to be set here)
+[context.dev.environment]
+  NODE_ENV = "development"
+
+[dev]
+  base = "/"
+  command = "pnpm --filter site dev"
+  targetPort = 4321
