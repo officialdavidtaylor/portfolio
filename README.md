@@ -6,6 +6,8 @@ You can view this site at [officialdavidtaylor.com](https://officialdavidtaylor.
 
 ## Tech Stack
 
+- **PNPM Workspaces** -> monorepo for ease of deploying my site and sanity studio separately
+
 - **Astro** -> using TypeScript, of course
 - **Tailwindcss** -> because it just clicks in my brain somehow
 
