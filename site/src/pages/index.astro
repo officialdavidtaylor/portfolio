@@ -1,4 +1,5 @@
 ---
+import JumboCard from "../components/JumboCard.astro";
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 ---
@@ -8,21 +9,10 @@ import Navbar from "../components/Navbar.astro";
   <main
     class="mx-auto flex w-full max-w-3xl flex-col items-center gap-20 px-2 pt-4 md:pt-40"
   >
-    <!-- card to signal the site is under construction atm -->
-    <div
-      class="flex flex-col items-center justify-center gap-10 rounded-2xl bg-white p-4 shadow-md md:p-10"
-    >
-      <h2 class="font-display text-4xl">Under construction</h2>
-      <p class="text-8xl">🚧</p>
-      <p class="font-project tracking-tighter">
-        Thanks for your interest in my site! Since early 2021 I've been slowly
-        piecing together this site, but it's been a back-burner project for most
-        of the time.
-        <br />
-        <br />
-        This year will be different; it's my main priority now. Please come back
-        soon for some interesting and fun content!
-      </p>
-    </div>
+    <JumboCard
+      heading="Under construction"
+      emoji="🚧"
+      body={`Thanks for your interest in my site! Since early 2021 I've been slowly piecing together this site, but it's been a back-burner project for most of the time.\n\nThis year will be different; it's my main priority now. Please come back soon for some interesting and fun content!`}
+    />
   </main>
 </Layout>

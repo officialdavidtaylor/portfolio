@@ -1,0 +1,14 @@
+---
+const { heading, emoji, body } = Astro.props;
+---
+
+<div
+  class="flex flex-col items-center justify-center gap-10 rounded-2xl bg-white p-4 shadow-md md:p-10"
+>
+  <h2 class="font-display text-4xl">{heading}</h2>
+  <p class="text-8xl">{emoji}</p>
+  <p class="whitespace-pre-line font-project tracking-tighter">
+    {body}
+  </p>
+  <slot />
+</div>
