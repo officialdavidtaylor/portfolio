@@ -1,18 +1,57 @@
 ---
+import Card from "../components/Card.astro";
 import JumboCard from "../components/JumboCard.astro";
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+
+import { sanityClient } from "sanity:client";
+
+const posts = await sanityClient.fetch(
+  `*[_type == "post" && defined(slug)] | order(publishedAt desc) {
+    featured,
+    title,
+    "slug": slug.current,
+    "featureImageUrl": featureImage.asset->url,
+    "categories": categories[]->{
+      title
+    }
+  }`,
+);
 ---
 
 <Layout title="david's portfolio • home">
   <Navbar />
   <main
-    class="mx-auto flex w-full max-w-3xl flex-col items-center gap-20 px-2 pt-4 md:pt-40"
+    class="mx-auto flex w-full max-w-3xl flex-col items-center gap-10 px-2 pb-2 pt-12 md:gap-20 md:pt-40"
   >
-    <JumboCard
-      heading="Under construction"
-      emoji="🚧"
-      body={`Thanks for your interest in my site! Since early 2021 I've been slowly piecing together this site, but it's been a back-burner project for most of the time.\n\nThis year will be different; it's my main priority now. Please come back soon for some interesting and fun content!`}
-    />
+    {
+      posts.length > 0 ? (
+        <>
+          <header class="flex flex-col gap-4 self-start">
+            <h1 class="font-display text-4xl md:text-5xl">Welcome, friend</h1>
+            <p class="font-display text-sm">
+              I've assembled some things I think are worth sharing with you; I
+              hope you enjoy them!
+            </p>
+          </header>
+          <ul class="flex w-full flex-row flex-wrap gap-5">
+            {posts.map((post) => (
+              <Card
+                title={post.title}
+                href={post.slug}
+                categories={post.categories}
+                featureImageUrl={post.featureImageUrl}
+              />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <JumboCard
+          heading="Under construction"
+          emoji="🚧"
+          body={`Thanks for your interest in my site! Since early 2021 I've been slowly piecing together this site, but it's been a back-burner project for most of the time.\n\nThis year will be different; it's my main priority now. Please come back soon for some interesting and fun content!`}
+        />
+      )
+    }
   </main>
 </Layout>

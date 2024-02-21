@@ -1,0 +1,43 @@
+---
+const { title, categories, href, featureImageUrl } = Astro.props;
+
+let fontFamily: string;
+switch (categories && categories[0].title) {
+  case "code":
+    fontFamily = "font-project tracking-tighter font-semibold";
+    break;
+  case "blog":
+    fontFamily = "font-display font-semibold";
+    break;
+  case "maker":
+    fontFamily = "font-hobby font-semibold";
+    break;
+  default:
+    fontFamily = "sans font-medium";
+}
+---
+
+<li class="min-w-60 flex-1">
+  <a
+    href={href}
+    class="group block rounded-2xl bg-white p-2 pb-4 shadow-sm transition-shadow delay-75 duration-300 ease-in-out hover:shadow-lg"
+  >
+    <div
+      class="flex w-full justify-center rounded-lg bg-gradient-to-tr from-purple-300 to-green-300 p-2"
+    >
+      <img alt="TODO:" src={featureImageUrl} class="max-h-48 rounded-lg" />
+    </div>
+    <div class="flex w-full flex-row justify-between p-4 pt-8 align-middle">
+      <h2 class={`${fontFamily} text-lg`}>
+        {title}
+      </h2>
+      <span
+        class="aspect-square rounded-sm transition-all delay-75 duration-300 ease-in-out group-hover:font-bold group-hover:ring-2"
+        >&rarr;</span
+      >
+    </div>
+    <p class="px-4 pb-2 text-sm text-gray-500">
+      a little one-liner to describe what's going on over there
+    </p>
+  </a>
+</li>
